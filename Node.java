@@ -20,7 +20,10 @@ public class Node {
     public Node(CharData cp) {
        this(cp, null);
     }
- 
+   public CharData getCp(){
+   return this.cp;
+   }
+
     /** Textual representation of this node. */
     public String toString() {
        return "" + cp;
