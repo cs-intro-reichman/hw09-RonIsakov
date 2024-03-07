@@ -5,10 +5,7 @@
  *  mention the existence of the Node objects). */
 public class List {
 
-    public static void main(String[] args) {
-
-        
-    }
+   
 
     // Points to the first node in this list
     private Node first;
@@ -91,19 +88,19 @@ public class List {
         if(indexOf(chr) == -1)
             return false;
         else if(indexOf(chr) == 0) {
-            Node oldFirst = first;
-            first = oldFirst.next;
+            Node sub = first;
+            first = sub.next;
             size--;
             return true;
         }
         else {
             Node current = first;
-            Node prev = null;
+            Node last = null;
             while(current.next != null && current.cd.chr != chr) {
-                prev = current;
+                last = current;
                 current = current.next;
             }
-            prev.next = current.next;
+            last.next = current.next;
             size--;
             return true;
         }
@@ -114,7 +111,7 @@ public class List {
      *  throws an IndexOutOfBoundsException. */
     public CharData get(int index) {
         Node current = first;
-        if(!(index < 0 || index>=size)) { // a,b,c,d 2
+        if(!(index < 0 || index>=size)) { 
             for(int i=0 ; i<index ; i++) {
                 current = current.next;
             }
@@ -151,4 +148,7 @@ public class List {
         // Returns an iterator that starts in that element
 	    return new ListIterator(current);
     }
+	 public static void main(String[] args) {
+    }
 }
+
