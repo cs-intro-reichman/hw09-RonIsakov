@@ -41,13 +41,13 @@ public class List {
         if (size == 0) {
             return "()";
         }
-        String res = "(";
+        String final = "(";
         Node current = first;
         while (current != null) {
-            res += current.toString() + " ";
+            final = final + current.toString()+" ";
             current = current.next;
         }
-        return res.substring(0, res.length() - 1) + ")";
+        return final.substring(0, final.length() - 1) + ")";
     }
 
     /** Returns the index of the first CharData object in this list
@@ -55,13 +55,13 @@ public class List {
      *  or -1 if there is no such object in this list. */
     public int indexOf(char chr) {
         Node current = first;
-        int index = 0;
+        int i = 0;
         while(current != null) {
             if(current.cd.chr == chr)
-                return index;
+                return i;
             else {
                 current = current.next;
-                index++;
+                i++;
             }
         }
         return -1;
@@ -75,7 +75,7 @@ public class List {
             addFirst(chr);
         else {
             Node current = first;
-            while(current.next != null && current.cd.chr != chr)
+            while(current.cd.chr != chr && current.next != null)
                 current = current.next;
             current.cd.count++;
         }
