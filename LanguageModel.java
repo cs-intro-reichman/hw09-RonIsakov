@@ -37,12 +37,9 @@ public class LanguageModel {
         String window = "";
         char c;
         In in = new In(fileName);
-
         for (int i = 0; i < windowLength; i++) {
             window += in.readChar();
-            ;
         }
-
         while (!in.isEmpty()) {
             c = in.readChar();
             List probs = CharDataMap.get(window);
@@ -51,7 +48,10 @@ public class LanguageModel {
                 CharDataMap.put(window, probs);
             }
             probs.update(c);
-            window = window.substring(1) + c;
+            window = (window + c).substring(1);
+        }
+        for (List probs : CharDataMap.values()) {
+            calculateProbabilities(probs);
         }
 
         for (List probs : CharDataMap.values()) {
