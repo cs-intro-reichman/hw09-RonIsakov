@@ -14,13 +14,13 @@ public class ListIterator {
     public boolean hasNext() {
         return (current != null);
     }
-  
+
     /** Returns the CharData object of the current element in this iteration,
      *  and advances the cursor to the next element.
      *  Should be called only if hasNext() is true. */
     public CharData next() {
-        CharData cp = current.cp;
+        CharData cd = current.cd;
         current = current.next;
-        return cp;
+        return cd;
     }
 }
