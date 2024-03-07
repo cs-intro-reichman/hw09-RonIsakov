@@ -65,14 +65,14 @@ public class LanguageModel {
 	int totalCount = 0;
         ListIterator iterator = probs.listIterator(0);
         while (iterator != null && iterator.hasNext()) {
-            totalCount += iterator.next().count;
+            totalCount = totalCount + iterator.next().count;
         }
         double cp = 0.0;
         for (int i = 0; i < probs.getSize(); ++i) {
             CharData currentCharData = probs.get(i);
-            currentCharData.p = (double)currentCharData.count / totalCharCount;
+            currentCharData.p = (double)currentCharData.count / totalCount;
             currentCharData.cp = (double)cp + currentCharData.p;
-            cp += currentCharData.p;
+            cp = cp + currentCharData.p;
         }
 	}
 
