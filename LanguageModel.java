@@ -93,21 +93,24 @@ public class LanguageModel {
 	 * @return the generated text
 	 */
 	public String generate(String initialText, int textLength) {
-	String result = initialText;
-        if ( ! (initialText.length() < windowLength)){
-            String window = initialText.substring(initialText.length() - windowLength);
-            result = window;
-            int numberOfLetters = textLength + windowLength;
-            while (result.length() < numberOfLetters) {
-                List curr_list = CharDataMap.get(window);
-                if (curr_list == null) {
-                    break;
-                }
-                result += getRandomChar(curr_list);
-                window = result.substring(result.length() - windowLength);
+	if (initialText.length() < windowLength) {
+            return initialText;
+        }
+
+        String window = initialText.substring(initialText.length() - windowLength);
+        String res = initialText;
+        List probs = new List();
+
+        while (res.length() - initialText.length() != textLength) {
+            probs = CharDataMap.get(window);
+            if (probs == null) {
+                return res;
+            } else {
+                res += getRandomChar(probs);
+                window = res.substring(res.length() - windowLength);
             }
         }
-        return  result;
+        return res;
 	}
 
     public static void main(String[] args) {
