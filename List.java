@@ -18,7 +18,7 @@ public class List {
     }
     /** Returns the number of elements in this list. */
     public int getSize() {
- 	      return size;
+    return size;
     }
 
     /** Returns the first element in the list */
@@ -28,8 +28,7 @@ public class List {
 
     /** GIVE Adds a CharData object with the given character to the beginning of this list. */
     public void addFirst(char chr) {
-        CharData input = new CharData(chr);
-        Node newNode = new Node(input,first);
+        Node newNode = new Node(new CharData(chr),first);
         first = newNode;
         size++;
     }
